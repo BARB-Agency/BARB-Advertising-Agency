@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Barb Agency — Your Story, Made Seen</title>
+  <link rel="stylesheet" href="styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Barb — calm, human marketing for local brands. Clear plans, warm creative, results you can measure." />
+  <link rel="icon" href="/assets/favicon.png" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Barb Agency — Calm, human marketing" />
+  <meta property="og:description" content="Clear plans, warm creative, results you can measure." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://barb.example/" />
+  <meta property="og:image" content="https://barb.example/assets/og-cover.jpg" />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Barb Agency — Calm, human marketing" />
+  <meta name="twitter:description" content="Clear plans, warm creative, results you can measure." />
+  <meta name="twitter:image" content="https://barb.example/assets/og-cover.jpg" />
+  <!-- Optional: privacy-friendly analytics (remove if not needed) -->
+  <script defer data-domain="barb.example" src="https://plausible.io/js/script.js"></script>
+</head>
+<body class="landing">
+  <!-- Minimal top bar (kept for quick movement) -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand"><span class="dot"></span><span>Barb</span></div>
+      <ul>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Mood hero -->
+  <main>
+    <section class="hero-mood">
+      <div class="container hero-wrap">
+        <div class="copy">
+          <div class="eyebrow">For local brands with big hearts</div>
+          <h1>Remember that first feeling of being seen?</h1>
+          <p>We bring your business to people the way memories do—softly, clearly, and in color. More than clicks. Moments that stay.</p>
+          <div class="benefits">
+            <span class="chip">Gentle funnels, no pressure</span>
+            <span class="chip">Content that feels familiar</span>
+            <span class="chip">Results you can measure</span>
+          </div>
+          <div class="cta-row">
+            <a id="beginBrief" class="btn primary" href="#">Begin your story</a>
+            <a class="btn ghost" href="#story">How it feels</a>
+          </div>
+        </div>
+        <div class="scene">
+          <!-- Decorative scene: subtle gradient + “memory” card stack -->
+          <div class="memory-card a"></div>
+          <div class="memory-card b"></div>
+          <div class="memory-card c"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- “How it feels” strip (emotion-first, no tech) -->
+    <section id="story" class="section soft">
+      <div class="container grid-3">
+        <div class="feel card">
+          <h3>Warm</h3>
+          <p>Colors and words tuned to comfort—your brand becomes a place people like to be.</p>
+        </div>
+        <div class="feel card">
+          <h3>Clear</h3>
+          <p>Paths that make sense, one gentle step at a time. No noise, no push.</p>
+        </div>
+        <div class="feel card">
+          <h3>Familiar</h3>
+          <p>Creatives that echo good memories—so your message lands softly and stays longer.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact hook kept, but quiet -->
+    <section id="contact" class="section footer-hook">
+      <div class="container foot-grid">
+        <div>
+          <h3>Prefer to talk?</h3>
+          <p>Say hello and we’ll reply soon.</p>
+        </div>
+        <form id="contactForm" class="inline-form">
+          <input name="name" placeholder="Your name" required />
+          <input type="email" name="email" placeholder="Email" required />
+          <button class="btn" type="submit">Send</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- AI intake modal -->
+  <div id="aiModal" class="modal hidden" aria-hidden="true">
+    <div class="modal-card">
+      <button class="x" aria-label="Close">×</button>
+      <h3>We’ll craft a plan just for you</h3>
+      <p class="muted">Answer a few gentle questions. You choose what to share. We’ll summarize and pass it to our Human Service Care Team.</p>
+      <!-- keep whatever form is already here -->
+
+      <!-- AI Intake Form (consent-first, personal questions optional) -->
+      <form id="aiIntake" style="margin-top:8px">
+        <label class="muted">Your business name</label>
+        <input name="business" required placeholder="e.g., Blue Harbor Café" style="width:100%;padding:12px;border-radius:10px;border:1px solid var(--ring);background:#0e1015;color:var(--text);margin:6px 0 12px" />
+
+        <label class="muted">What do you sell? Who do you serve?</label>
+        <textarea name="offer" required placeholder="Products/services, typical customer" style="width:100%;min-height:90px;padding:12px;border-radius:10px;border:1px solid var(--ring);background:#0e1015;color:var(--text);margin:6px 0 12px"></textarea>
+
+        <label class="muted">Your vibe (pick any)</label>
+        <div class="badges" style="margin:6px 0 12px">
+          <label><input type="checkbox" name="vibe" value="warm" /> Warm</label>
+          <label><input type="checkbox" name="vibe" value="playful" /> Playful</label>
+          <label><input type="checkbox" name="vibe" value="luxury" /> Luxury</label>
+          <label><input type="checkbox" name="vibe" value="minimal" /> Minimal</label>
+          <label><input type="checkbox" name="vibe" value="adventurous" /> Adventurous</label>
+        </div>
+
+        <label class="muted">Goals (pick any)</label>
+        <div class="badges" style="margin:6px 0 12px">
+          <label><input type="checkbox" name="goals" value="more_foot_traffic" /> More foot traffic</label>
+          <label><input type="checkbox" name="goals" value="more_bookings" /> More bookings</label>
+          <label><input type="checkbox" name="goals" value="grow_social" /> Grow social</label>
+          <label><input type="checkbox" name="goals" value="better_website" /> Better website</label>
+          <label><input type="checkbox" name="goals" value="ads_roas" /> Ads that pay back</label>
+        </div>
+
+        <label class="muted">Rough monthly budget</label>
+        <select name="budget" required style="width:100%;padding:12px;border-radius:10px;border:1px solid var(--ring);background:#0e1015;color:var(--text);margin:6px 0 12px">
+          <option value="">Choose…</option>
+          <option>Under $500</option>
+          <option>$500–$1,500</option>
+          <option>$1,500–$3,000</option>
+          <option>$3,000–$6,000</option>
+          <option>$6,000+</option>
+        </select>
+
+        <label class="muted">A little about you (optional)</label>
+        <textarea name="about" placeholder="What matters to you, brand story, your style, time constraints…" style="width:100%;min-height:80px;padding:12px;border-radius:10px;border:1px solid var(--ring);background:#0e1015;color:var(--text);margin:6px 0 12px"></textarea>
+
+        <label class="muted">Contact email (for your summary)</label>
+        <input type="email" name="email" required placeholder="you@business.com" style="width:100%;padding:12px;border-radius:10px;border:1px solid var(--ring);background:#0e1015;color:var(--text);margin:6px 0 12px" />
+
+        <label style="display:flex;align-items:flex-start;gap:10px;margin:8px 0 12px;color:var(--muted);font-size:13px">
+          <input type="checkbox" name="consent" required />
+          I agree Barb may use my answers to personalize suggestions and share them with the Human Service Care Team. I can request deletion anytime.
+        </label>
+
+        <div class="row">
+          <button class="btn primary" type="submit">Create my plan</button>
+          <a class="btn ghost" href="live.html">Skip to human</a>
+        </div>
+      </form>
+
+      <p id="aiStatus" class="tiny" style="display:none">Thinking…</p>
+  </div>
+  </div>
+
+  <!-- slim progress bar -->
+  <div id="pg" class="progressbar"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

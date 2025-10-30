@@ -1,0 +1,118 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Barb - Personalized Human Service Care</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css" />
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+  <meta name="description" content="Barb — your personalized starting plan and live booking." />
+  <link rel="icon" href="/assets/favicon.png" />
+  <meta property="og:title" content="Your plan — Barb Agency" />
+  <meta property="og:description" content="Personalized plan, book a live intro in one click." />
+  <meta property="og:type" content="website" />
+</head>
+<body>
+  <!-- Handoff: shows profile + recommended plan; simple CTA to contact -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand"><span class="dot"></span><span>Barb</span></div>
+      <ul>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="work.html">Work</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <section class="section">
+    <div class="container grid-2">
+      <div class="card">
+        <h2 style="margin-top:0">Your profile</h2>
+        <pre id="profile" style="white-space:pre-wrap;font-family:ui-monospace,Menlo,Consolas;background:#0e1015;padding:12px;border-radius:12px;border:1px solid var(--ring);color:var(--text)"></pre>
+        <button class="btn" id="forget">Forget my data</button>
+      </div>
+      <div class="card">
+        <h2 style="margin-top:0">Recommended starting plan</h2>
+        <div id="reco"></div>
+        <div class="hr"></div>
+        <p class="muted">A human will confirm details and discuss pricing live.</p>
+        <!-- Calendly (optional). If you set CALENDLY_URL in .env, it appears below -->
+        <div class="row" style="gap:10px;flex-wrap:wrap">
+          <a class="btn primary" id="ctaEmail" href="mailto:hello@youragency.com?subject=Barb%20—%20Ready%20to%20talk">Start live now (email)</a>
+          <a class="btn" id="ctaBook" href="#" target="_blank" rel="noopener">Book a 15-min intro</a>
+        </div>
+        <div id="calWrap" class="cal-wrap" style="margin-top:12px;display:none">
+          <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+          <div class="calendly-inline-widget" style="min-width:280px;height:680px;border-radius:14px;overflow:hidden"></div>
+          <script src="https://assets.calendly.com/assets/external/widget.js"></script>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="schedule" class="card" style="display:none; margin-top:18px;">
+    <h3>Book a 15-min intro</h3>
+    <p>Pick a time that works — we’ll confirm details and answer questions live.</p>
+    <div class="row" style="display:flex; gap:12px; align-items:center;">
+      <button id="bookBtn" class="btn">Open Scheduler</button>
+      <a id="bookLink" class="tiny" href="#" target="_blank" rel="noopener">Open in new tab</a>
+    </div>
+    <div id="calendlyMount" style="margin-top:16px;"></div>
+  </section>
+
+  <script>
+    const p = localStorage.getItem("barb_ai_profile_text") || "No profile found. Please go back and click “Begin your story” to create your brief.";
+    document.getElementById("profile").textContent = p;
+
+    document.getElementById("forget")?.addEventListener("click", () => {
+      localStorage.removeItem("barb_ai_profile_text");
+      localStorage.removeItem("barb_ai_profile_obj");
+      localStorage.removeItem("barb_ai_reco");
+      location.reload();
+    });
+
+    const recoEl = document.getElementById("reco");
+    try {
+      const reco = JSON.parse(localStorage.getItem("barb_ai_reco") || "{}");
+      if (reco && reco.plan) {
+        recoEl.innerHTML = `
+          <h3>${reco.plan.title}</h3>
+          <p>${reco.plan.summary}</p>
+          <ul>${(reco.plan.actions || []).map(a => `<li>${a}</li>`).join("")}</ul>
+        `;
+      } else {
+        recoEl.textContent = "We’ll finalize your plan together.";
+      }
+    } catch {
+      recoEl.textContent = "We’ll finalize your plan together.";
+    }
+  </script>
+
+  <script>
+    // Calendly attach (read CALENDLY_URL from server env.json)
+    (async () => {
+      try{
+        const res = await fetch("/env.json");
+        const env = res.ok ? await res.json() : {};
+        const url = env.CALENDLY_URL || "";
+        if (url){
+          const book = document.getElementById("ctaBook");
+          const wrap = document.getElementById("calWrap");
+          if (book) book.href = url;
+          if (wrap) wrap.style.display = "block";
+          const node = document.querySelector(".calendly-inline-widget");
+          node?.setAttribute("data-url", url);
+        } else {
+          const book = document.getElementById("ctaBook");
+          if (book) book.style.display = "none";
+        }
+      }catch{}
+    })();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
+

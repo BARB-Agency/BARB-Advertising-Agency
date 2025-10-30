@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600" fill="none">
+  <defs>
+    <linearGradient id="grad" x1="0" y1="600" x2="900" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#eef4ff"/>
+      <stop offset="1" stop-color="#d8e7ff"/>
+    </linearGradient>
+    <pattern id="dots" x="0" y="0" width="24" height="24" patternUnits="userSpaceOnUse">
+      <circle cx="1.5" cy="1.5" r="1.5" fill="#c7d6f8"/>
+    </pattern>
+  </defs>
+  <rect width="900" height="600" fill="url(#grad)"/>
+  <rect width="900" height="600" fill="url(#dots)" opacity=".35"/>
+  <g opacity=".35">
+    <circle cx="730" cy="120" r="80" fill="#4b7bec"/>
+    <circle cx="150" cy="420" r="120" fill="#7ab4ff"/>
+    <rect x="420" y="280" width="160" height="160" rx="32" fill="#5f93ff"/>
+  </g>
+</svg>
+
