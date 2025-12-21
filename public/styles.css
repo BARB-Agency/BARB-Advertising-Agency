@@ -10,6 +10,12 @@
   --max:1180px;
 }
 
+:root {
+  --warm-1: #ffb38a;
+  --warm-2: #ffd6b0;
+  --glow: rgba(255,180,120,.35);
+}
+
 *{box-sizing:border-box}
 html,body{margin:0;padding:0}
 body{
@@ -17,6 +23,21 @@ body{
   background: var(--bg);
   color:var(--text);
   line-height:1.6;
+}
+body{
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(255,180,120,.12), transparent 40%),
+    radial-gradient(900px 500px at 90% 10%, rgba(255,210,160,.10), transparent 45%),
+    var(--bg);
+}
+
+section {
+  animation: fadeUp .6s ease both;
+}
+
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(16px); }
+  to   { opacity:1; transform:none; }
 }
 
 /* Utilities */
@@ -51,10 +72,21 @@ p{margin:0 0 18px; color:var(--muted)}
   display:inline-flex; align-items:center; justify-content:center;
   padding:12px 18px; border-radius:12px; border:1px solid var(--ring);
   background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-  color:var(--text); text-decoration:none; font-weight:600
+  color:var(--text); text-decoration:none; font-weight:600;
+  transition: transform .15s ease, box-shadow .15s ease;
 }
 .btn.primary{border-color:transparent; background:linear-gradient(135deg,var(--brand),#2bd1ff3d); box-shadow:0 8px 24px rgba(0,208,255,.18)}
-.btn:hover{transform:translateY(-1px)}
+.btn:hover{
+  transform:translateY(-1px);
+  box-shadow: 0 8px 24px var(--glow);
+}
+.primary-btn {
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.primary-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px var(--glow);
+}
 .card{background:var(--card); border:1px solid var(--ring); border-radius:var(--radius); padding:18px}
 .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
 
@@ -248,4 +280,16 @@ html { scroll-behavior: smooth; }
 
 @media (max-width: 860px) {
   .memory-row { grid-template-columns: 1fr; }
+}
+
+.scroll-cue {
+  margin-top: 28px;
+  opacity: .6;
+  font-size: 13px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,100%{opacity:.4}
+  50%{opacity:.9}
 }
