@@ -39,6 +39,71 @@ app.get("/env.json", (req, res) => {
 // Simple healthcheck
 app.get("/health", (_req, res) => res.json({ ok: true }));
 
+// --- AI marketing plan (optional) ---
+app.post("/api/ai/plan", async (req, res) => {
+  // Safety: if no OpenAI configured, just fall back
+  if (!openai) {
+    return res.status(503).json({
+      plan: "Our AI helper is offline right now, but a human from the Barb team will review your answers and suggest a personalized starting plan live.",
+    });
+  }
+
+  try {
+    const profile = req.body?.profile || {};
+
+    const business = profile.business || "a local business";
+    const offer = profile.offer || "";
+    const vibe = Array.isArray(profile.vibe) ? profile.vibe.join(", ") : profile.vibe || "";
+    const goals = Array.isArray(profile.goals) ? profile.goals.join(", ") : profile.goals || "";
+    const budget = profile.budget || "not specified";
+    const notes = profile.notes || "";
+    const email = profile.email || "";
+
+    const userPrompt = `
+You are a kind, practical marketing strategist at a small creative agency called "Barb" in Florida.
+
+Write a short, concrete starting plan for this business.
+Tone: warm, clear, no fluff. Avoid jargon. 2–4 short sections with bullet points.
+
+Business name: ${business}
+What they sell / who they serve: ${offer}
+Vibe they want: ${vibe}
+Main goals: ${goals}
+Rough monthly budget: ${budget}
+Founder notes: ${notes}
+Contact email: ${email}
+
+Focus on: what they GET out of working with us (foot traffic, social presence, trust, etc.).
+Do not talk about "ChatGPT" or "AI", just say "our team" or "we".
+`;
+
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4.1-mini",
+      messages: [
+        {
+          role: "system",
+          content:
+            "You are a friendly marketing strategist for local brands. You give clear, specific plans, not generic advice.",
+        },
+        { role: "user", content: userPrompt },
+      ],
+      max_tokens: 500,
+      temperature: 0.7,
+    });
+
+    const text =
+      completion.choices?.[0]?.message?.content?.trim() ||
+      "We’ll review your answers and craft a starting plan with you live.";
+
+    res.json({ plan: text });
+  } catch (err) {
+    console.error("Error in /api/ai/plan:", err);
+    res.status(500).json({
+      plan: "We had a small technical issue. A human from the Barb team will suggest a plan live.",
+    });
+  }
+});
+
 // --- OpenAI (optional) ---
 let openai = null;
 try {

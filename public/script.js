@@ -198,3 +198,92 @@ Email: ${data.email}
     console.warn('[Calendly] init failed', e);
   }
 })();
+
+// --- Live page logic (AI + email handoff) ---
+function loadBarbProfile() {
+  try {
+    const raw = localStorage.getItem("barbProfile");
+    return raw ? JSON.parse(raw) : null;
+  } catch {
+    return null;
+  }
+}
+
+async function initLivePage() {
+  const profile = loadBarbProfile() || {};
+
+  // Fill profile block
+  const profileEl = document.querySelector("[data-profile]");
+  if (profileEl) {
+    profileEl.textContent = [
+      `Business: ${profile.business || "-"}`,
+      `Offer / audience: ${profile.offer || "-"}`,
+      `Vibe: ${(profile.vibe || []).join(", ") || "-"}`,
+      `Goals: ${(profile.goals || []).join(", ") || "-"}`,
+      `Budget: ${profile.budget || "-"}`,
+      `Founder notes: ${profile.notes || "-"}`,
+      `Email: ${profile.email || "-"}`,
+    ].join("\n");
+  }
+
+  // Fire AI request
+  const planEl = document.querySelector("[data-plan]");
+  if (planEl) {
+    planEl.textContent = "We’re drafting a starting plan based on your answers…";
+
+    try {
+      const res = await fetch("/api/ai/plan", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ profile }),
+      });
+
+      const data = await res.json();
+      planEl.textContent =
+        data.plan ||
+        "We’ll suggest a starting plan with you live. (Our AI helper is taking a break.)";
+    } catch (err) {
+      console.error("AI plan error", err);
+      planEl.textContent =
+        "We’ll suggest a starting plan with you live. (We hit a small technical snag.)";
+    }
+  }
+
+  // Forget profile button
+  const forgetBtn = document.getElementById("forgetProfile");
+  if (forgetBtn) {
+    forgetBtn.addEventListener("click", () => {
+      localStorage.removeItem("barbProfile");
+      window.location.href = "index.html";
+    });
+  }
+
+  // Start live (email)
+  const startBtn = document.getElementById("startLiveBtn");
+  if (startBtn) {
+    startBtn.addEventListener("click", () => {
+      const email = profile.email || "";
+      const subject = encodeURIComponent("Barb: Ready to talk");
+      const body = encodeURIComponent(
+        `Hi Barb team,
+
+Here’s my profile and AI starting plan from the website:
+
+${profileEl ? profileEl.textContent : ""}
+
+${planEl ? "\n\nAI starting plan:\n" + planEl.textContent : ""}
+
+Let’s talk about next steps and pricing.
+
+Thanks!`
+      );
+
+      window.location.href = `mailto:hello@youragency.com?subject=${subject}&body=${body}`;
+    });
+  }
+}
+
+// Auto-run when on live page
+if (window.location.pathname.endsWith("live.html")) {
+  initLivePage();
+}

@@ -3,20 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Barb Agency — Your Story, Made Seen</title>
+  <title>Barb Agency - Your Story, Made Seen</title>
   <link rel="stylesheet" href="styles.css" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Barb — calm, human marketing for local brands. Clear plans, warm creative, results you can measure." />
+  <meta name="description" content="Barb - calm, human marketing for local brands. Clear plans, warm creative, results you can measure." />
   <link rel="icon" href="/assets/favicon.png" />
   <!-- Open Graph -->
-  <meta property="og:title" content="Barb Agency — Calm, human marketing" />
+  <meta property="og:title" content="Barb Agency - Calm, human marketing" />
   <meta property="og:description" content="Clear plans, warm creative, results you can measure." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://barb.example/" />
   <meta property="og:image" content="https://barb.example/assets/og-cover.jpg" />
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Barb Agency — Calm, human marketing" />
+  <meta name="twitter:title" content="Barb Agency - Calm, human marketing" />
   <meta name="twitter:description" content="Clear plans, warm creative, results you can measure." />
   <meta name="twitter:image" content="https://barb.example/assets/og-cover.jpg" />
   <!-- Optional: privacy-friendly analytics (remove if not needed) -->
@@ -27,23 +26,24 @@
   <header class="nav">
     <div class="container nav-inner">
       <div class="brand"><span class="dot"></span><span>Barb</span></div>
-      <ul>
+      <ul class="nav-links">
         <li><a href="services.html">Services</a></li>
         <li><a href="work.html">Work</a></li>
         <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
   </header>
 
   <!-- Mood hero -->
   <main>
-    <section class="hero-mood">
+    <section class="hero hero-mood" id="start">
+      <div class="hero-haze" aria-hidden="true"></div>
       <div class="container hero-wrap">
         <div class="copy">
           <div class="eyebrow">For local brands with big hearts</div>
           <h1>Remember that first feeling of being seen?</h1>
-          <p>We bring your business to people the way memories do—softly, clearly, and in color. More than clicks. Moments that stay.</p>
+          <p>Marketing that feels familiar - like a good memory - and still performs.</p>
           <div class="benefits">
             <span class="chip">Gentle funnels, no pressure</span>
             <span class="chip">Content that feels familiar</span>
@@ -51,11 +51,28 @@
           </div>
           <div class="cta-row">
             <a id="beginBrief" class="btn primary" href="#">Begin your story</a>
-            <a class="btn ghost" href="#story">How it feels</a>
+            <a class="btn ghost" href="#services">How it feels</a>
+          </div>
+          <div class="memory-row">
+            <div class="memory-card">
+              <div class="dot"></div>
+              <h4>Warm</h4>
+              <p>Calm words, soft visuals, and a vibe people trust instantly.</p>
+            </div>
+            <div class="memory-card">
+              <div class="dot"></div>
+              <h4>Clear</h4>
+              <p>No buzzwords. Just a plan your customers actually feel.</p>
+            </div>
+            <div class="memory-card">
+              <div class="dot"></div>
+              <h4>Familiar</h4>
+              <p>We make brands feel like "home" - and that converts.</p>
+            </div>
           </div>
         </div>
         <div class="scene">
-          <!-- Decorative scene: subtle gradient + “memory” card stack -->
+          <!-- Decorative scene: subtle gradient + memory card stack -->
           <div class="memory-card a"></div>
           <div class="memory-card b"></div>
           <div class="memory-card c"></div>
@@ -63,30 +80,78 @@
       </div>
     </section>
 
-    <!-- “How it feels” strip (emotion-first, no tech) -->
-    <section id="story" class="section soft">
-      <div class="container grid-3">
-        <div class="feel card">
-          <h3>Warm</h3>
-          <p>Colors and words tuned to comfort—your brand becomes a place people like to be.</p>
+    <!-- Services -->
+    <section id="services" class="section soft">
+      <div class="container">
+        <h2>Services that feel human</h2>
+        <p>Brand storytelling, paid growth, and content that lands softly while still moving the numbers.</p>
+        <div class="grid-3">
+          <div class="feel card">
+            <h3>Warm creative</h3>
+            <p>Colors and words tuned to comfort - your brand becomes a place people like to be.</p>
+          </div>
+          <div class="feel card">
+            <h3>Clear journeys</h3>
+            <p>Paths that make sense, one gentle step at a time. No noise, no push.</p>
+          </div>
+          <div class="feel card">
+            <h3>Familiar touchpoints</h3>
+            <p>Creatives that echo good memories so your message lands softly and stays longer.</p>
+          </div>
         </div>
-        <div class="feel card">
-          <h3>Clear</h3>
-          <p>Paths that make sense, one gentle step at a time. No noise, no push.</p>
+      </div>
+    </section>
+
+    <!-- Work -->
+    <section id="work" class="section">
+      <div class="container">
+        <h2>How we work</h2>
+        <p>Simple rhythms that let you feel every move: listen, shape, ship.</p>
+        <div class="grid-3">
+          <div class="card">
+            <h3>Listen closely</h3>
+            <p>We start with your memories of the brand - what mattered, what felt right, what customers loved.</p>
+          </div>
+          <div class="card">
+            <h3>Shape the feeling</h3>
+            <p>We script campaigns, landing pages, and emails that mirror that warmth without losing clarity.</p>
+          </div>
+          <div class="card">
+            <h3>Ship with care</h3>
+            <p>Launch in calm waves, read the signals, and tune the mix so results keep compounding.</p>
+          </div>
         </div>
-        <div class="feel card">
-          <h3>Familiar</h3>
-          <p>Creatives that echo good memories—so your message lands softly and stays longer.</p>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="section soft">
+      <div class="container">
+        <h2>Pricing that meets you where you are</h2>
+        <p>Start small, scale as trust builds. Every option includes reporting that makes sense.</p>
+        <div class="grid-3">
+          <div class="card">
+            <h3>Starter</h3>
+            <p>Monthly creative refresh + light ads support for emerging brands testing the waters.</p>
+          </div>
+          <div class="card">
+            <h3>Growth</h3>
+            <p>Full-funnel buildouts, weekly content, and CRO loops to keep momentum.</p>
+          </div>
+          <div class="card">
+            <h3>Hands-on</h3>
+            <p>Embedded team, multi-channel media, and on-call creative ops when you need a steady partner.</p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- Contact hook kept, but quiet -->
-    <section id="contact" class="section footer-hook">
+    <footer id="contact" class="section footer-hook">
       <div class="container foot-grid">
         <div>
           <h3>Prefer to talk?</h3>
-          <p>Say hello and we’ll reply soon.</p>
+          <p>Say hello and we'll reply soon.</p>
         </div>
         <form id="contactForm" class="inline-form">
           <input name="name" placeholder="Your name" required />
@@ -94,21 +159,21 @@
           <button class="btn" type="submit">Send</button>
         </form>
       </div>
-    </section>
+    </footer>
   </main>
 
   <!-- AI intake modal -->
   <div id="aiModal" class="modal hidden" aria-hidden="true">
     <div class="modal-card">
-      <button class="x" aria-label="Close">×</button>
-      <h3>We’ll craft a plan just for you</h3>
-      <p class="muted">Answer a few gentle questions. You choose what to share. We’ll summarize and pass it to our Human Service Care Team.</p>
+      <button class="x" aria-label="Close">A-</button>
+      <h3>We'll craft a plan just for you</h3>
+      <p class="muted">Answer a few gentle questions. You choose what to share. We'll summarize and pass it to our Human Service Care Team.</p>
       <!-- keep whatever form is already here -->
 
       <!-- AI Intake Form (consent-first, personal questions optional) -->
       <form id="aiIntake" style="margin-top:8px">
         <label class="muted">Your business name</label>
-        <input name="business" required placeholder="e.g., Blue Harbor Café" style="width:100%;padding:12px;border-radius:10px;border:1px solid var(--ring);background:#0e1015;color:var(--text);margin:6px 0 12px" />
+        <input name="business" required placeholder="e.g., Blue Harbor Cafe" style="width:100%;padding:12px;border-radius:10px;border:1px solid var(--ring);background:#0e1015;color:var(--text);margin:6px 0 12px" />
 
         <label class="muted">What do you sell? Who do you serve?</label>
         <textarea name="offer" required placeholder="Products/services, typical customer" style="width:100%;min-height:90px;padding:12px;border-radius:10px;border:1px solid var(--ring);background:#0e1015;color:var(--text);margin:6px 0 12px"></textarea>
@@ -133,16 +198,16 @@
 
         <label class="muted">Rough monthly budget</label>
         <select name="budget" required style="width:100%;padding:12px;border-radius:10px;border:1px solid var(--ring);background:#0e1015;color:var(--text);margin:6px 0 12px">
-          <option value="">Choose…</option>
+          <option value="">Choose...</option>
           <option>Under $500</option>
-          <option>$500–$1,500</option>
-          <option>$1,500–$3,000</option>
-          <option>$3,000–$6,000</option>
+          <option>$500-$1,500</option>
+          <option>$1,500-$3,000</option>
+          <option>$3,000-$6,000</option>
           <option>$6,000+</option>
         </select>
 
         <label class="muted">A little about you (optional)</label>
-        <textarea name="about" placeholder="What matters to you, brand story, your style, time constraints…" style="width:100%;min-height:80px;padding:12px;border-radius:10px;border:1px solid var(--ring);background:#0e1015;color:var(--text);margin:6px 0 12px"></textarea>
+        <textarea name="about" placeholder="What matters to you, brand story, your style, time constraints" style="width:100%;min-height:80px;padding:12px;border-radius:10px;border:1px solid var(--ring);background:#0e1015;color:var(--text);margin:6px 0 12px"></textarea>
 
         <label class="muted">Contact email (for your summary)</label>
         <input type="email" name="email" required placeholder="you@business.com" style="width:100%;padding:12px;border-radius:10px;border:1px solid var(--ring);background:#0e1015;color:var(--text);margin:6px 0 12px" />
@@ -158,7 +223,7 @@
         </div>
       </form>
 
-      <p id="aiStatus" class="tiny" style="display:none">Thinking…</p>
+      <p id="aiStatus" class="tiny" style="display:none">Thinking...</p>
   </div>
   </div>
 

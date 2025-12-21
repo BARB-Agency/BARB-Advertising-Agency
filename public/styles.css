@@ -81,15 +81,15 @@ body.landing{
 .btn.ghost{background:transparent}
 
 .scene{position:relative; height:360px}
-.memory-card{position:absolute; inset:auto; width:72%; height:70%; border-radius:18px; border:1px solid var(--ring); filter:blur(.1px);
+.scene .memory-card{position:absolute; inset:auto; width:72%; height:70%; border-radius:18px; border:1px solid var(--ring); filter:blur(.1px);
   background:
     radial-gradient(500px 240px at 70% 10%, rgba(138,255,138,.18), transparent 60%),
     radial-gradient(400px 220px at 15% 80%, rgba(0,208,255,.18), transparent 55%),
     #0e1116;}
-.memory-card.a{top:14%; left:10%; transform:rotate(-6deg)}
-.memory-card.b{top:0; right:6%; transform:rotate(8deg)}
-.memory-card.c{bottom:6%; left:18%; transform:rotate(2deg)}
-.memory-card::after{content:""; position:absolute; inset:0; border-radius:18px; box-shadow:0 24px 70px rgba(0,0,0,.45) inset}
+.scene .memory-card.a{top:14%; left:10%; transform:rotate(-6deg)}
+.scene .memory-card.b{top:0; right:6%; transform:rotate(8deg)}
+.scene .memory-card.c{bottom:6%; left:18%; transform:rotate(2deg)}
+.scene .memory-card::after{content:""; position:absolute; inset:0; border-radius:18px; box-shadow:0 24px 70px rgba(0,0,0,.45) inset}
 
 /* Soft strip */
 .section.soft{padding:54px 0}
@@ -102,12 +102,64 @@ body.landing{
 .inline-form input{padding:12px; border-radius:10px; border:1px solid var(--ring); background:#0e1015; color:var(--text)}
 
 /* Modal (wired next step) */
-.modal{position:fixed; inset:0; display:grid; place-items:center; background:rgba(0,0,0,.5)}
-.modal.hidden{display:none}
-.modal-card{width:min(560px,92vw); background:var(--card); border:1px solid var(--ring); border-radius:16px; padding:22px}
-.modal-card .x{float:right; border:0; background:transparent; color:var(--muted); font-size:22px; cursor:pointer}
-.modal-card .row{display:flex; gap:10px; margin-top:8px}
-.tiny{font-size:12px; color:var(--muted); margin-top:8px}
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: rgba(0, 0, 0, .55);
+  padding: 32px 16px;
+  z-index: 1000;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-card {
+  width: min(560px, 92vw);
+  background: var(--card);
+  border: 1px solid var(--ring);
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, .35);
+  max-height: min(90vh, 720px);
+  overflow-y: auto;   /* 🔥 fix scrolling */
+}
+
+.modal-card .x {
+  float: right;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.modal-card .row {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.tiny {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .modal {
+    align-items: stretch;
+    padding: 16px;
+  }
+
+  .modal-card {
+    width: 100%;
+    max-height: calc(100vh - 32px);
+  }
+}
 
 /* Calendly polish */
 .calendly-inline-widget{ border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.25); }
@@ -123,3 +175,77 @@ h1,h2,h3{ letter-spacing:.2px; }
 p{ line-height:1.6; }
 .badge{ border:1px solid rgba(255,255,255,.14); padding:6px 10px; border-radius:999px; font-size:12px; }
 nav, header, main, footer{ max-width:var(--page); margin:auto; padding:0 16px; }
+
+html { scroll-behavior: smooth; }
+
+.nav-links a {
+  position: relative;
+}
+.nav-links a.active { opacity: 1; }
+.nav-links a::after {
+  content:"";
+  position:absolute;
+  left:0; bottom:-8px;
+  width:0; height:2px;
+  background: rgba(255,255,255,.35);
+  transition: width .22s ease;
+}
+.nav-links a:hover::after { width:100%; }
+.nav-links a.active::after { width:100%; }
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-haze {
+  position: absolute;
+  inset: -40px;
+  background:
+    radial-gradient(700px 340px at 18% 18%, rgba(255,190,120,.20), transparent 60%),
+    radial-gradient(620px 300px at 85% 12%, rgba(140,200,255,.15), transparent 58%),
+    radial-gradient(640px 320px at 55% 82%, rgba(255,140,200,.10), transparent 62%);
+  filter: blur(10px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero > * { position: relative; z-index: 1; }
+
+.memory-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.memory-card {
+  background: rgba(255,255,255,.045);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 16px;
+  padding: 14px 14px;
+  box-shadow: 0 18px 40px rgba(0,0,0,.22);
+  transform: translateY(0);
+  transition: transform .18s ease, background .18s ease, border-color .18s ease;
+}
+
+.memory-card:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,.065);
+  border-color: rgba(255,255,255,.16);
+}
+
+.memory-card .dot{
+  width:10px; height:10px;
+  border-radius:999px;
+  background: rgba(255,190,120,.85);
+  box-shadow: 0 0 0 4px rgba(255,190,120,.18);
+  margin-bottom: 10px;
+}
+
+.memory-card h4 { margin: 0 0 6px; font-size: 14px; letter-spacing: .3px; }
+.memory-card p { margin: 0; color: rgba(255,255,255,.78); font-size: 13px; line-height: 1.55; }
+
+@media (max-width: 860px) {
+  .memory-row { grid-template-columns: 1fr; }
+}

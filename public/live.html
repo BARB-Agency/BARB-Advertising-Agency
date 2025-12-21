@@ -18,40 +18,41 @@
   <header class="nav">
     <div class="container nav-inner">
       <div class="brand"><span class="dot"></span><span>Barb</span></div>
-      <ul>
+      <ul class="nav-links">
         <li><a href="services.html">Services</a></li>
         <li><a href="work.html">Work</a></li>
         <li><a href="pricing.html">Pricing</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="contact.html">Contact</a></li>
       </ul>
     </div>
   </header>
 
-  <section class="section">
-    <div class="container grid-2">
-      <div class="card">
-        <h2 style="margin-top:0">Your profile</h2>
-        <pre id="profile" style="white-space:pre-wrap;font-family:ui-monospace,Menlo,Consolas;background:#0e1015;padding:12px;border-radius:12px;border:1px solid var(--ring);color:var(--text)"></pre>
-        <button class="btn" id="forget">Forget my data</button>
-      </div>
-      <div class="card">
-        <h2 style="margin-top:0">Recommended starting plan</h2>
-        <div id="reco"></div>
-        <div class="hr"></div>
-        <p class="muted">A human will confirm details and discuss pricing live.</p>
-        <!-- Calendly (optional). If you set CALENDLY_URL in .env, it appears below -->
-        <div class="row" style="gap:10px;flex-wrap:wrap">
-          <a class="btn primary" id="ctaEmail" href="mailto:hello@youragency.com?subject=Barb%20—%20Ready%20to%20talk">Start live now (email)</a>
-          <a class="btn" id="ctaBook" href="#" target="_blank" rel="noopener">Book a 15-min intro</a>
-        </div>
-        <div id="calWrap" class="cal-wrap" style="margin-top:12px;display:none">
-          <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-          <div class="calendly-inline-widget" style="min-width:280px;height:680px;border-radius:14px;overflow:hidden"></div>
-          <script src="https://assets.calendly.com/assets/external/widget.js"></script>
-        </div>
-      </div>
-    </div>
+  <main class="live-shell">
+  <section class="live-panel">
+    <h2>Your profile</h2>
+    <pre class="live-profile" data-profile>
+Loading your answers…
+    </pre>
+    <button class="ghost-btn" id="forgetProfile">Forget my data</button>
   </section>
+
+  <section class="live-panel">
+    <h2>Recommended starting plan</h2>
+    <div class="live-plan" data-plan>
+      We’re drafting your plan based on your answers…
+    </div>
+
+    <p class="live-note">
+      A human from the <strong>Barb Human Service Care Team</strong> will confirm details and
+      talk pricing live, based on this starting plan and your background.
+    </p>
+
+    <button class="primary-btn" id="startLiveBtn">
+      Start live now (email)
+    </button>
+  </section>
+</main>
+
 
   <section id="schedule" class="card" style="display:none; margin-top:18px;">
     <h3>Book a 15-min intro</h3>
@@ -115,4 +116,3 @@
   <script src="script.js"></script>
 </body>
 </html>
-
